@@ -1,4 +1,5 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, PlayCircle } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -25,6 +26,23 @@ export async function generateMetadata({
   };
 }
 
+function youtubeEmbedUrl(input: string): string | null {
+  try {
+    const url = new URL(input);
+    if (url.hostname.includes("youtu.be")) {
+      const id = url.pathname.slice(1);
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+    if (url.hostname.includes("youtube.com")) {
+      const id = url.searchParams.get("v");
+      return id ? `https://www.youtube.com/embed/${id}` : null;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 export default async function ProjectDetailPage({ params }: { params: Params }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
@@ -39,22 +57,36 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
         <ArrowLeft className="h-4 w-4" /> 回到作品列表
       </Link>
 
-      <header className="mt-8 border-b border-orange-500/20 pb-8">
+      <div
+        className="anim-fade-zoom relative mt-8 aspect-[1200/630] overflow-hidden rounded-xl border border-orange-500/25 bg-zinc-950"
+        style={{ animationDelay: "100ms" }}
+      >
+        <Image
+          src={`/projects/${project.slug}/opengraph-image`}
+          alt={`${project.name} 封面`}
+          fill
+          priority
+          sizes="(min-width: 768px) 768px, 100vw"
+          className="object-cover"
+        />
+      </div>
+
+      <header className="mt-10 border-b border-orange-500/20 pb-8">
         <p
           className="anim-fade-up font-display text-sm font-medium uppercase tracking-[0.25em] text-orange-500"
-          style={{ animationDelay: "100ms" }}
+          style={{ animationDelay: "200ms" }}
         >
           {project.year}
         </p>
         <h1
           className="anim-fade-up mt-2 font-display text-4xl font-bold tracking-wider text-zinc-50 sm:text-5xl"
-          style={{ animationDelay: "200ms" }}
+          style={{ animationDelay: "300ms" }}
         >
           {project.name}
         </h1>
         <p
           className="anim-fade-up mt-4 text-lg leading-8 text-zinc-300"
-          style={{ animationDelay: "350ms" }}
+          style={{ animationDelay: "400ms" }}
         >
           {project.summary}
         </p>
@@ -102,33 +134,53 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
             作品列表 · {project.items.length} 件
           </h2>
           <ul className="mt-6 grid gap-3">
-            {project.items.map((item, idx) => (
-              <li
-                key={item.url}
-                className="anim-fade-up"
-                style={{ animationDelay: `${500 + idx * 80}ms` }}
-              >
-                <a
-                  href={item.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-baseline gap-4 rounded-lg border border-zinc-800 bg-zinc-950/60 p-4 backdrop-blur-md transition hover:border-orange-500/60 hover:bg-orange-500/5"
+            {project.items.map((item, idx) => {
+              const embed = item.videoUrl ? youtubeEmbedUrl(item.videoUrl) : null;
+              return (
+                <li
+                  key={item.url}
+                  className="anim-fade-up overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/60 backdrop-blur-md transition hover:border-orange-500/60"
+                  style={{ animationDelay: `${500 + idx * 80}ms` }}
                 >
-                  <span className="w-12 shrink-0 font-mono text-sm text-orange-500/80">
-                    {item.year}
-                  </span>
-                  <div className="flex-1">
-                    <p className="font-medium text-zinc-100 transition group-hover:text-orange-300">
-                      {item.title}
-                    </p>
-                    {item.note && (
-                      <p className="mt-1 text-sm text-zinc-500">{item.note}</p>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-baseline gap-4 p-4 transition hover:bg-orange-500/5"
+                  >
+                    <span className="w-12 shrink-0 font-mono text-sm text-orange-500/80">
+                      {item.year}
+                    </span>
+                    <div className="flex-1">
+                      <p className="font-medium text-zinc-100 transition group-hover:text-orange-300">
+                        {item.title}
+                      </p>
+                      {item.note && (
+                        <p className="mt-1 text-sm text-zinc-500">{item.note}</p>
+                      )}
+                    </div>
+                    {item.videoUrl && (
+                      <PlayCircle className="h-4 w-4 shrink-0 text-orange-400/80" />
                     )}
-                  </div>
-                  <ExternalLink className="h-4 w-4 shrink-0 text-zinc-600 transition group-hover:text-orange-400" />
-                </a>
-              </li>
-            ))}
+                    <ExternalLink className="h-4 w-4 shrink-0 text-zinc-600 transition group-hover:text-orange-400" />
+                  </a>
+                  {embed && (
+                    <div className="border-t border-orange-500/20 bg-black/40 p-3">
+                      <div className="aspect-video w-full overflow-hidden rounded-md">
+                        <iframe
+                          src={embed}
+                          title={`${item.title} 試玩影片`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          allowFullScreen
+                          loading="lazy"
+                          className="h-full w-full"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </section>
       )}

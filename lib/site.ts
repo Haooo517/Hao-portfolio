@@ -15,6 +15,7 @@ export const site = {
     { href: "/", label: "首頁" },
     { href: "/projects", label: "作品" },
     { href: "/about", label: "關於我" },
+    { href: "/now", label: "Now" },
     { href: "/files", label: "檔案" },
     { href: "/contact", label: "聯絡" },
   ],

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Orbitron } from "next/font/google";
+import { ViewTransition } from "react";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
@@ -46,7 +47,9 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-black text-zinc-100 site-bg">
         <Header />
-        <main className="flex-1">{children}</main>
+        <main className="flex-1">
+          <ViewTransition>{children}</ViewTransition>
+        </main>
         <Footer />
       </body>
     </html>

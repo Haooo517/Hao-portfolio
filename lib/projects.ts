@@ -3,6 +3,7 @@ export type ProjectItem = {
   url: string;
   year: number;
   note?: string;
+  videoUrl?: string; // YouTube watch URL — auto-converted to embed
 };
 
 export type Project = {

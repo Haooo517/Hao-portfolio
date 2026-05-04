@@ -1,5 +1,7 @@
 import { projects } from "@/lib/projects";
 import { ProjectCard } from "@/components/project-card";
+import { Tilt } from "@/components/tilt-card";
+import { Reveal } from "@/components/reveal";
 
 export const metadata = { title: "Projects" };
 
@@ -17,13 +19,11 @@ export default function ProjectsPage() {
       </p>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, idx) => (
-          <div
-            key={p.slug}
-            className="anim-fade-up"
-            style={{ animationDelay: `${250 + idx * 120}ms` }}
-          >
-            <ProjectCard project={p} />
-          </div>
+          <Reveal key={p.slug} delay={idx * 90}>
+            <Tilt>
+              <ProjectCard project={p} />
+            </Tilt>
+          </Reveal>
         ))}
       </div>
     </div>
