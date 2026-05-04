@@ -90,12 +90,4 @@ export const projects: Project[] = [
       },
     ],
   },
-  {
-    slug: "generation-ai",
-    name: "Generation AI",
-    summary: "Jupyter Notebook 上的 AI 實驗專案（待補介紹）。",
-    tech: ["Python", "Jupyter"],
-    github: "https://github.com/Haooo517/Generation_AI",
-    year: 2025,
-  },
 ];

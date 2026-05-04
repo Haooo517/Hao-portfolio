@@ -6,14 +6,21 @@ type AvatarProps = {
   name: string;
   size?: number;
   className?: string;
+  glow?: boolean;
 };
 
 const AVATAR_FILE = "avatar.jpg";
 
-export function Avatar({ name, size = 96, className = "" }: AvatarProps) {
+export function Avatar({
+  name,
+  size = 96,
+  className = "",
+  glow = false,
+}: AvatarProps) {
   const hasPhoto = existsSync(join(process.cwd(), "public", AVATAR_FILE));
   const initial = name.trim().charAt(0) || "?";
   const dimension = { width: size, height: size };
+  const glowClass = glow ? "anim-glow-pulse" : "";
 
   if (hasPhoto) {
     return (
@@ -22,7 +29,7 @@ export function Avatar({ name, size = 96, className = "" }: AvatarProps) {
         alt={name}
         {...dimension}
         priority
-        className={`rounded-full border-2 border-orange-500/60 object-cover ${className}`}
+        className={`rounded-full object-cover ${glowClass} ${className}`}
       />
     );
   }
@@ -30,7 +37,7 @@ export function Avatar({ name, size = 96, className = "" }: AvatarProps) {
   return (
     <div
       style={dimension}
-      className={`flex items-center justify-center rounded-full border-2 border-orange-500/60 bg-gradient-to-br from-orange-500/30 to-orange-700/20 font-semibold text-orange-300 ${className}`}
+      className={`flex items-center justify-center rounded-full border-2 border-orange-500/60 bg-gradient-to-br from-orange-500/30 to-orange-700/20 font-semibold text-orange-300 ${glowClass} ${className}`}
     >
       <span style={{ fontSize: size * 0.42 }}>{initial}</span>
     </div>

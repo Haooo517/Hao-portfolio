@@ -34,19 +34,30 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
     <div className="mx-auto max-w-3xl px-6 py-24">
       <Link
         href="/projects"
-        className="inline-flex items-center gap-1.5 text-sm text-zinc-400 transition hover:text-orange-400"
+        className="anim-fade inline-flex items-center gap-1.5 text-sm text-zinc-400 transition hover:text-orange-400 hover:-translate-x-0.5"
       >
         <ArrowLeft className="h-4 w-4" /> 回到作品列表
       </Link>
 
       <header className="mt-8 border-b border-orange-500/20 pb-8">
-        <p className="font-display text-sm font-medium uppercase tracking-[0.25em] text-orange-500">
+        <p
+          className="anim-fade-up font-display text-sm font-medium uppercase tracking-[0.25em] text-orange-500"
+          style={{ animationDelay: "100ms" }}
+        >
           {project.year}
         </p>
-        <h1 className="mt-2 font-display text-4xl font-bold tracking-wider text-zinc-50 sm:text-5xl">
+        <h1
+          className="anim-fade-up mt-2 font-display text-4xl font-bold tracking-wider text-zinc-50 sm:text-5xl"
+          style={{ animationDelay: "200ms" }}
+        >
           {project.name}
         </h1>
-        <p className="mt-4 text-lg leading-8 text-zinc-300">{project.summary}</p>
+        <p
+          className="anim-fade-up mt-4 text-lg leading-8 text-zinc-300"
+          style={{ animationDelay: "350ms" }}
+        >
+          {project.summary}
+        </p>
 
         <div className="mt-6 flex flex-wrap gap-2">
           {project.tech.map((t) => (
@@ -91,8 +102,12 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
             作品列表 · {project.items.length} 件
           </h2>
           <ul className="mt-6 grid gap-3">
-            {project.items.map((item) => (
-              <li key={item.url}>
+            {project.items.map((item, idx) => (
+              <li
+                key={item.url}
+                className="anim-fade-up"
+                style={{ animationDelay: `${500 + idx * 80}ms` }}
+              >
                 <a
                   href={item.url}
                   target="_blank"
