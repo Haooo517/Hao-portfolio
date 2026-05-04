@@ -36,10 +36,10 @@ export const projects: Project[] = [
     summary: "用 WebGL 從零寫的 3D 貪食蛇，可以在瀏覽器裡直接玩。",
     tech: ["JavaScript", "WebGL"],
     github: "https://github.com/Haooo517/snake-game-3d",
-    externalUrl: "https://haooo517.github.io/snake-game-3d/",
+    demo: "https://haooo517.github.io/snake-game-3d/",
     cover: "/home-page/preview/snake.png",
     coverAspect: "1082/777",
-    year: 2026,
+    year: 2025,
   },
   {
     slug: "hao-portfolio",
