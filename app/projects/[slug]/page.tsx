@@ -147,63 +147,6 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
         )}
       </header>
 
-      {project.videos && project.videos.length > 0 && (
-        <section className="mt-12">
-          <h2 className="font-display text-xl font-bold tracking-wider text-orange-400">
-            VIDEOS · 影片 / 播放清單
-          </h2>
-          <div className="mt-6 grid gap-6">
-            {project.videos.map((video, idx) => {
-              const embed = youtubeEmbedUrl(video.url);
-              return (
-                <article
-                  key={video.url}
-                  className="anim-fade-up overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md"
-                  style={{ animationDelay: `${idx * 100}ms` }}
-                >
-                  <header className="flex items-center justify-between gap-3 border-b border-orange-500/15 px-4 py-3">
-                    <div className="min-w-0">
-                      <h3 className="truncate font-medium text-orange-300">
-                        {video.title}
-                      </h3>
-                      {video.description && (
-                        <p className="mt-1 text-xs text-zinc-500">
-                          {video.description}
-                        </p>
-                      )}
-                    </div>
-                    <a
-                      href={video.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="shrink-0 inline-flex items-center gap-1 rounded-md border border-orange-500/30 bg-orange-500/5 px-2.5 py-1 text-xs text-orange-300 transition hover:border-orange-400 hover:bg-orange-500/15"
-                    >
-                      YouTube <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </header>
-                  {embed ? (
-                    <div className="aspect-video w-full bg-black">
-                      <iframe
-                        src={embed}
-                        title={video.title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                        loading="lazy"
-                        className="h-full w-full"
-                      />
-                    </div>
-                  ) : (
-                    <p className="p-4 text-sm text-zinc-500">
-                      無法解析這個 YouTube 連結。
-                    </p>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
       {project.items && project.items.length > 0 && (
         <section className="mt-12">
           <h2 className="font-display text-xl font-bold tracking-wider text-orange-400">
@@ -275,6 +218,63 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
               );
             })}
           </ul>
+        </section>
+      )}
+
+      {project.videos && project.videos.length > 0 && (
+        <section className="mt-12">
+          <h2 className="font-display text-xl font-bold tracking-wider text-orange-400">
+            VIDEOS · 影片 / 播放清單
+          </h2>
+          <div className="mt-6 grid gap-6">
+            {project.videos.map((video, idx) => {
+              const embed = youtubeEmbedUrl(video.url);
+              return (
+                <article
+                  key={video.url}
+                  className="anim-fade-up overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <header className="flex items-center justify-between gap-3 border-b border-orange-500/15 px-4 py-3">
+                    <div className="min-w-0">
+                      <h3 className="truncate font-medium text-orange-300">
+                        {video.title}
+                      </h3>
+                      {video.description && (
+                        <p className="mt-1 text-xs text-zinc-500">
+                          {video.description}
+                        </p>
+                      )}
+                    </div>
+                    <a
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 inline-flex items-center gap-1 rounded-md border border-orange-500/30 bg-orange-500/5 px-2.5 py-1 text-xs text-orange-300 transition hover:border-orange-400 hover:bg-orange-500/15"
+                    >
+                      YouTube <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </header>
+                  {embed ? (
+                    <div className="aspect-video w-full bg-black">
+                      <iframe
+                        src={embed}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                        className="h-full w-full"
+                      />
+                    </div>
+                  ) : (
+                    <p className="p-4 text-sm text-zinc-500">
+                      無法解析這個 YouTube 連結。
+                    </p>
+                  )}
+                </article>
+              );
+            })}
+          </div>
         </section>
       )}
     </div>
