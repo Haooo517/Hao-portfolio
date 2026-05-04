@@ -36,12 +36,10 @@ export default function ContactPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
-      <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Contact
+      <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
+        <span className="text-orange-400">Contact</span>
       </h1>
-      <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-400">
-        有什麼想聊的，這些都找得到我。
-      </p>
+      <p className="mt-3 text-lg text-zinc-400">有什麼想聊的，這些都找得到我。</p>
       <ul className="mt-10 space-y-3">
         {items.map(({ icon: Icon, label, href }) => (
           <li key={href}>
@@ -49,10 +47,10 @@ export default function ContactPage() {
               href={href}
               target={href.startsWith("http") ? "_blank" : undefined}
               rel="noopener noreferrer"
-              className="group flex items-center gap-3 rounded-lg border border-zinc-200 bg-white p-4 transition hover:border-zinc-300 dark:border-zinc-800 dark:bg-zinc-950 dark:hover:border-zinc-700"
+              className="group flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950 p-4 transition hover:border-orange-500/60 hover:bg-orange-500/5"
             >
-              <Icon className="h-5 w-5 text-zinc-500 transition group-hover:text-zinc-900 dark:group-hover:text-zinc-50" />
-              <span className="font-medium text-zinc-900 dark:text-zinc-50">
+              <Icon className="h-5 w-5 text-zinc-500 transition group-hover:text-orange-400" />
+              <span className="font-medium text-zinc-100 transition group-hover:text-orange-300">
                 {label}
               </span>
             </a>

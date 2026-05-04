@@ -18,32 +18,32 @@ export const metadata = { title: "Files" };
 export default function FilesPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
-      <h1 className="text-4xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-        Files
+      <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
+        <span className="text-orange-400">Files</span>
       </h1>
-      <p className="mt-3 text-lg text-zinc-600 dark:text-zinc-400">公開下載區。</p>
+      <p className="mt-3 text-lg text-zinc-400">公開下載區。</p>
 
       {files.length === 0 ? (
-        <div className="mt-10 rounded-lg border border-dashed border-zinc-300 p-12 text-center text-zinc-500 dark:border-zinc-700">
-          <FileText className="mx-auto h-8 w-8 opacity-50" />
+        <div className="mt-10 rounded-lg border border-dashed border-orange-500/30 p-12 text-center text-zinc-500">
+          <FileText className="mx-auto h-8 w-8 text-orange-400/60" />
           <p className="mt-3">
             還沒有檔案。把檔案放到{" "}
-            <code className="rounded bg-zinc-100 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
+            <code className="rounded bg-orange-500/10 px-1.5 py-0.5 text-sm text-orange-300">
               public/
             </code>
             ，並編輯{" "}
-            <code className="rounded bg-zinc-100 px-1.5 py-0.5 text-sm dark:bg-zinc-800">
+            <code className="rounded bg-orange-500/10 px-1.5 py-0.5 text-sm text-orange-300">
               app/files/page.tsx
             </code>{" "}
             的 files 陣列。
           </p>
         </div>
       ) : (
-        <ul className="mt-10 divide-y divide-zinc-200 rounded-lg border border-zinc-200 dark:divide-zinc-800 dark:border-zinc-800">
+        <ul className="mt-10 divide-y divide-zinc-800 rounded-lg border border-zinc-800">
           {files.map((file) => (
             <li key={file.href} className="flex items-center justify-between gap-4 p-4">
               <div>
-                <p className="font-medium text-zinc-900 dark:text-zinc-50">{file.name}</p>
+                <p className="font-medium text-zinc-100">{file.name}</p>
                 <p className="text-sm text-zinc-500">
                   {file.description}
                   {file.size && ` · ${file.size}`}
@@ -52,7 +52,7 @@ export default function FilesPage() {
               <a
                 href={file.href}
                 download
-                className="inline-flex items-center gap-1.5 rounded-md border border-zinc-200 bg-white px-3 py-1.5 text-sm font-medium text-zinc-900 transition hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800"
+                className="inline-flex items-center gap-1.5 rounded-md border border-orange-500/40 bg-orange-500/10 px-3 py-1.5 text-sm font-medium text-orange-300 transition hover:border-orange-400 hover:bg-orange-500/20 hover:text-orange-200"
               >
                 <Download className="h-4 w-4" /> 下載
               </a>

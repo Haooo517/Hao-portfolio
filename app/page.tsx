@@ -10,25 +10,25 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-24">
       <section className="max-w-2xl">
-        <p className="text-sm font-medium uppercase tracking-wider text-zinc-500">
-          Hi, I&apos;m {site.author.name}
+        <p className="text-sm font-medium uppercase tracking-wider text-orange-500">
+          Hi, I&apos;m <span className="text-orange-300">{site.author.name}</span>
         </p>
-        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-50">
-          {site.description}
+        <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
+          一個<span className="text-orange-400">工程師</span>的作品集與個人空間
         </h1>
-        <p className="mt-6 text-lg leading-8 text-zinc-600 dark:text-zinc-400">
+        <p className="mt-6 text-lg leading-8 text-zinc-400">
           這裡放我做過的東西、寫過的字，還有可以下載的檔案。
         </p>
         <div className="mt-8 flex items-center gap-3">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-1.5 rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-zinc-700 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+            className="inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-black transition hover:bg-orange-400"
           >
             看作品 <ArrowRight className="h-4 w-4" />
           </Link>
           <Link
             href="/about"
-            className="inline-flex items-center rounded-md px-4 py-2 text-sm font-medium text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+            className="inline-flex items-center rounded-md border border-orange-500/40 px-4 py-2 text-sm font-medium text-orange-300 transition hover:border-orange-400 hover:text-orange-200"
           >
             關於我
           </Link>
@@ -38,12 +38,12 @@ export default function HomePage() {
       {featured.length > 0 && (
         <section className="mt-24">
           <div className="flex items-baseline justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
-              Featured Projects
+            <h2 className="text-2xl font-semibold tracking-tight text-zinc-50">
+              <span className="text-orange-400">Featured</span> Projects
             </h2>
             <Link
               href="/projects"
-              className="text-sm text-zinc-600 transition hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              className="text-sm text-zinc-400 transition hover:text-orange-400"
             >
               所有作品 →
             </Link>
