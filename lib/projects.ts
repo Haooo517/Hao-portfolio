@@ -37,6 +37,8 @@ export const projects: Project[] = [
     tech: ["JavaScript", "WebGL"],
     github: "https://github.com/Haooo517/snake-game-3d",
     externalUrl: "https://haooo517.github.io/snake-game-3d/",
+    cover: "/home-page/preview/snake.png",
+    coverAspect: "1082/777",
     year: 2026,
   },
   {
