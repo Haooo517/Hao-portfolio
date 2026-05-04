@@ -9,7 +9,7 @@ type AvatarProps = {
   glow?: boolean;
 };
 
-const AVATAR_FILE = "avatar.jpg";
+const AVATAR_PATH = "home-page/avatar.jpg";
 
 export function Avatar({
   name,
@@ -17,7 +17,7 @@ export function Avatar({
   className = "",
   glow = false,
 }: AvatarProps) {
-  const hasPhoto = existsSync(join(process.cwd(), "public", AVATAR_FILE));
+  const hasPhoto = existsSync(join(process.cwd(), "public", AVATAR_PATH));
   const initial = name.trim().charAt(0) || "?";
   const dimension = { width: size, height: size };
   const glowClass = glow ? "anim-glow-pulse" : "";
@@ -25,7 +25,7 @@ export function Avatar({
   if (hasPhoto) {
     return (
       <Image
-        src={`/${AVATAR_FILE}`}
+        src={`/${AVATAR_PATH}`}
         alt={name}
         {...dimension}
         priority

@@ -222,23 +222,40 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
                     href={item.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group flex items-baseline gap-4 p-4 transition hover:bg-orange-500/5"
+                    className="group flex items-stretch gap-4 p-3 transition hover:bg-orange-500/5"
                   >
-                    <span className="w-12 shrink-0 font-mono text-sm text-orange-500/80">
-                      {item.year}
-                    </span>
-                    <div className="flex-1">
-                      <p className="font-medium text-zinc-100 transition group-hover:text-orange-300">
-                        {item.title}
-                      </p>
+                    {item.cover && (
+                      <div className="relative aspect-video w-32 shrink-0 overflow-hidden rounded-md border border-orange-500/20 bg-zinc-950 sm:w-44">
+                        <Image
+                          src={item.cover}
+                          alt={`${item.title} 縮圖`}
+                          fill
+                          sizes="(min-width: 640px) 176px, 128px"
+                          className="object-cover transition duration-500 group-hover:scale-[1.06]"
+                        />
+                      </div>
+                    )}
+                    <div className="flex min-w-0 flex-1 flex-col justify-center">
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-mono text-xs text-orange-500/80">
+                          {item.year}
+                        </span>
+                        <p className="truncate font-medium text-zinc-100 transition group-hover:text-orange-300">
+                          {item.title}
+                        </p>
+                      </div>
                       {item.note && (
-                        <p className="mt-1 text-sm text-zinc-500">{item.note}</p>
+                        <p className="mt-1 line-clamp-3 text-sm text-zinc-400">
+                          {item.note}
+                        </p>
                       )}
                     </div>
-                    {item.videoUrl && (
-                      <PlayCircle className="h-4 w-4 shrink-0 text-orange-400/80" />
-                    )}
-                    <ExternalLink className="h-4 w-4 shrink-0 text-zinc-600 transition group-hover:text-orange-400" />
+                    <div className="flex shrink-0 flex-col items-end justify-between py-1">
+                      <ExternalLink className="h-4 w-4 text-zinc-600 transition group-hover:text-orange-400" />
+                      {item.videoUrl && (
+                        <PlayCircle className="h-4 w-4 text-orange-400/80" />
+                      )}
+                    </div>
                   </a>
                   {embed && (
                     <div className="border-t border-orange-500/20 bg-black/40 p-3">
