@@ -10,8 +10,8 @@ export default function AboutPage() {
       <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
         <Avatar name={site.author.name} size={96} className="shrink-0" />
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
-            <span className="text-orange-400">About</span>
+          <h1 className="font-display text-4xl font-bold tracking-wider text-zinc-50">
+            <span className="text-orange-400">ABOUT</span>
           </h1>
           <p className="mt-2 text-zinc-400">
             嗨，我是 <span className="font-semibold text-orange-300">{site.author.name}</span>。

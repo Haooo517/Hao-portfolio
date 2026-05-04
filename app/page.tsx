@@ -13,11 +13,15 @@ export default function HomePage() {
       <section className="flex max-w-2xl flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
         <Avatar name={site.author.name} size={112} className="shrink-0" />
         <div>
-        <p className="text-sm font-medium uppercase tracking-wider text-orange-500">
+        <p className="font-display text-sm font-medium uppercase tracking-[0.25em] text-orange-500">
           Hi, I&apos;m <span className="text-orange-300">{site.author.name}</span>
         </p>
         <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-50 sm:text-5xl">
-          一個<span className="text-orange-400">工程師</span>的作品集與個人空間
+          一個
+          <span className="bg-gradient-to-r from-orange-400 to-orange-600 bg-clip-text text-transparent">
+            工程師
+          </span>
+          的作品集與個人空間
         </h1>
         <p className="mt-6 text-lg leading-8 text-zinc-400">
           這裡放我做過的東西、寫過的字，還有可以下載的檔案。
@@ -42,8 +46,8 @@ export default function HomePage() {
       {featured.length > 0 && (
         <section className="mt-24">
           <div className="flex items-baseline justify-between">
-            <h2 className="text-2xl font-semibold tracking-tight text-zinc-50">
-              <span className="text-orange-400">Featured</span> Projects
+            <h2 className="font-display text-2xl font-bold tracking-wider text-zinc-50">
+              <span className="text-orange-400">FEATURED</span> PROJECTS
             </h2>
             <Link
               href="/projects"

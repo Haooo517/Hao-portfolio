@@ -2,7 +2,7 @@ export const site = {
   name: "張訓豪",
   title: "張訓豪 — 個人作品集",
   description: "一個工程師的作品集與個人空間",
-  url: "https://hao-portfolio.vercel.app",
+  url: "https://hao-portfolio-xi.vercel.app",
   author: {
     name: "張訓豪",
     email: "howard940517@gmail.com",
@@ -19,15 +19,11 @@ export const site = {
   skills: [
     {
       group: "語言",
-      items: ["TypeScript", "JavaScript", "Python", "HTML", "CSS"],
+      items: ["C", "Python", "JavaScript", "SQL"],
     },
     {
-      group: "前端",
-      items: ["React", "Next.js", "Tailwind CSS"],
-    },
-    {
-      group: "後端 / 工具",
-      items: ["Node.js", "Git", "REST API"],
+      group: "框架 / 函式庫",
+      items: ["Vue", "React"],
     },
   ],
 } as const;

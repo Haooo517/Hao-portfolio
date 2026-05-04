@@ -36,8 +36,8 @@ export default function ContactPage() {
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
-      <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
-        <span className="text-orange-400">Contact</span>
+      <h1 className="font-display text-4xl font-bold tracking-wider text-zinc-50">
+        <span className="text-orange-400">CONTACT</span>
       </h1>
       <p className="mt-3 text-lg text-zinc-400">有什麼想聊的，這些都找得到我。</p>
       <ul className="mt-10 space-y-3">
