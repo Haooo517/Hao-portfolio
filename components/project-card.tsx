@@ -19,9 +19,10 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       <div className="relative aspect-[1200/630] overflow-hidden border-b border-orange-500/15 bg-zinc-950">
         <Image
-          src={`/projects/${project.slug}/opengraph-image`}
+          src={project.cover ?? `/projects/${project.slug}/opengraph-image`}
           alt={`${project.name} 封面`}
           fill
+          unoptimized={!!project.cover && /\.(gif|webp|apng)$/i.test(project.cover)}
           sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
           className="object-cover transition duration-500 group-hover:scale-[1.04]"
         />

@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <div className="mx-auto max-w-5xl px-6 py-24">
       <Spotlight size={520} intensity={0.16} className="rounded-3xl">
-        <section className="flex flex-col items-center gap-10 px-2 py-6 text-center sm:flex-row sm:items-center sm:gap-12 sm:text-left">
+        <section className="flex flex-col items-center gap-10 px-6 py-8 text-center sm:flex-row sm:items-center sm:gap-14 sm:px-10 sm:text-left">
           <div className="anim-fade-zoom shrink-0">
             <div className="anim-float rounded-full">
               <Avatar name={site.author.name} size={176} glow />

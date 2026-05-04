@@ -31,7 +31,6 @@ function youtubeEmbedUrl(input: string): string | null {
     const url = new URL(input);
     const list = url.searchParams.get("list");
 
-    // youtu.be/VIDEO_ID  (optionally with ?list=)
     if (url.hostname.includes("youtu.be")) {
       const id = url.pathname.slice(1);
       if (!id) return null;
@@ -47,7 +46,6 @@ function youtubeEmbedUrl(input: string): string | null {
           ? `https://www.youtube.com/embed/${id}?list=${list}`
           : `https://www.youtube.com/embed/${id}`;
       }
-      // Pure playlist URL: youtube.com/playlist?list=PL...
       if (list) {
         return `https://www.youtube.com/embed/videoseries?list=${list}`;
       }
@@ -58,15 +56,15 @@ function youtubeEmbedUrl(input: string): string | null {
   }
 }
 
+const isAnimated = (src: string) => /\.(gif|webp|apng)$/i.test(src);
+
 export default async function ProjectDetailPage({ params }: { params: Params }) {
   const { slug } = await params;
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
-  const seriesEmbed = project.videoUrl
-    ? youtubeEmbedUrl(project.videoUrl)
-    : null;
   const coverSrc = project.cover ?? `/projects/${project.slug}/opengraph-image`;
+  const coverAspect = project.coverAspect ?? "1200/630";
 
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
@@ -78,28 +76,18 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
       </Link>
 
       <div
-        className="anim-fade-zoom relative mt-8 aspect-video overflow-hidden rounded-xl border border-orange-500/25 bg-zinc-950"
-        style={{ animationDelay: "100ms" }}
+        className="anim-fade-zoom relative mt-8 overflow-hidden rounded-xl border border-orange-500/25 bg-zinc-950"
+        style={{ animationDelay: "100ms", aspectRatio: coverAspect }}
       >
-        {seriesEmbed ? (
-          <iframe
-            src={seriesEmbed}
-            title={`${project.name} 影片`}
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
-            loading="lazy"
-            className="h-full w-full"
-          />
-        ) : (
-          <Image
-            src={coverSrc}
-            alt={`${project.name} 封面`}
-            fill
-            priority
-            sizes="(min-width: 768px) 768px, 100vw"
-            className="object-cover"
-          />
-        )}
+        <Image
+          src={coverSrc}
+          alt={`${project.name} 封面`}
+          fill
+          priority
+          unoptimized={isAnimated(coverSrc)}
+          sizes="(min-width: 768px) 768px, 100vw"
+          className="object-cover"
+        />
       </div>
 
       <header className="mt-10 border-b border-orange-500/20 pb-8">
@@ -159,6 +147,63 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
         )}
       </header>
 
+      {project.videos && project.videos.length > 0 && (
+        <section className="mt-12">
+          <h2 className="font-display text-xl font-bold tracking-wider text-orange-400">
+            VIDEOS · 影片 / 播放清單
+          </h2>
+          <div className="mt-6 grid gap-6">
+            {project.videos.map((video, idx) => {
+              const embed = youtubeEmbedUrl(video.url);
+              return (
+                <article
+                  key={video.url}
+                  className="anim-fade-up overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md"
+                  style={{ animationDelay: `${idx * 100}ms` }}
+                >
+                  <header className="flex items-center justify-between gap-3 border-b border-orange-500/15 px-4 py-3">
+                    <div className="min-w-0">
+                      <h3 className="truncate font-medium text-orange-300">
+                        {video.title}
+                      </h3>
+                      {video.description && (
+                        <p className="mt-1 text-xs text-zinc-500">
+                          {video.description}
+                        </p>
+                      )}
+                    </div>
+                    <a
+                      href={video.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="shrink-0 inline-flex items-center gap-1 rounded-md border border-orange-500/30 bg-orange-500/5 px-2.5 py-1 text-xs text-orange-300 transition hover:border-orange-400 hover:bg-orange-500/15"
+                    >
+                      YouTube <ExternalLink className="h-3 w-3" />
+                    </a>
+                  </header>
+                  {embed ? (
+                    <div className="aspect-video w-full bg-black">
+                      <iframe
+                        src={embed}
+                        title={video.title}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowFullScreen
+                        loading="lazy"
+                        className="h-full w-full"
+                      />
+                    </div>
+                  ) : (
+                    <p className="p-4 text-sm text-zinc-500">
+                      無法解析這個 YouTube 連結。
+                    </p>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {project.items && project.items.length > 0 && (
         <section className="mt-12">
           <h2 className="font-display text-xl font-bold tracking-wider text-orange-400">
@@ -171,7 +216,7 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
                 <li
                   key={item.url}
                   className="anim-fade-up overflow-hidden rounded-lg border border-zinc-800 bg-zinc-950/60 backdrop-blur-md transition hover:border-orange-500/60"
-                  style={{ animationDelay: `${500 + idx * 80}ms` }}
+                  style={{ animationDelay: `${idx * 80}ms` }}
                 >
                   <a
                     href={item.url}
