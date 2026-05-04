@@ -3,7 +3,7 @@ export type ProjectItem = {
   url: string;
   year: number;
   note?: string;
-  videoUrl?: string; // YouTube watch URL — auto-converted to embed
+  videoUrl?: string; // YouTube watch / short / playlist URL — auto-converted to embed
 };
 
 export type Project = {
@@ -15,6 +15,8 @@ export type Project = {
   demo?: string;
   year: number;
   items?: ProjectItem[];
+  videoUrl?: string; // series-level video / playlist (e.g. all playthroughs)
+  cover?: string; // optional override path under /public, falls back to dynamic OG
 };
 
 // 把下面的範例換成你真的做過的專案。陣列順序就是顯示順序，最新的放最前面。
@@ -34,6 +36,8 @@ export const projects: Project[] = [
       "2019–2022 年在巴哈姆特發表的整人、解謎、密室、跑酷地圖，共 9 張作品。",
     tech: ["Minecraft", "Map Design", "巴哈姆特"],
     year: 2022,
+    videoUrl:
+      "https://youtube.com/playlist?list=PL1ooxyQKbtR_3Bum7Aa4ucGkRA9CAR2Ml",
     items: [
       {
         title: "思想囚牢 (Mind Prison)",

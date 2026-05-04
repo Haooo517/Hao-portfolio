@@ -29,13 +29,28 @@ export async function generateMetadata({
 function youtubeEmbedUrl(input: string): string | null {
   try {
     const url = new URL(input);
+    const list = url.searchParams.get("list");
+
+    // youtu.be/VIDEO_ID  (optionally with ?list=)
     if (url.hostname.includes("youtu.be")) {
       const id = url.pathname.slice(1);
-      return id ? `https://www.youtube.com/embed/${id}` : null;
+      if (!id) return null;
+      return list
+        ? `https://www.youtube.com/embed/${id}?list=${list}`
+        : `https://www.youtube.com/embed/${id}`;
     }
+
     if (url.hostname.includes("youtube.com")) {
       const id = url.searchParams.get("v");
-      return id ? `https://www.youtube.com/embed/${id}` : null;
+      if (id) {
+        return list
+          ? `https://www.youtube.com/embed/${id}?list=${list}`
+          : `https://www.youtube.com/embed/${id}`;
+      }
+      // Pure playlist URL: youtube.com/playlist?list=PL...
+      if (list) {
+        return `https://www.youtube.com/embed/videoseries?list=${list}`;
+      }
     }
     return null;
   } catch {
@@ -48,6 +63,11 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
   const project = projects.find((p) => p.slug === slug);
   if (!project) notFound();
 
+  const seriesEmbed = project.videoUrl
+    ? youtubeEmbedUrl(project.videoUrl)
+    : null;
+  const coverSrc = project.cover ?? `/projects/${project.slug}/opengraph-image`;
+
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
       <Link
@@ -58,17 +78,28 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
       </Link>
 
       <div
-        className="anim-fade-zoom relative mt-8 aspect-[1200/630] overflow-hidden rounded-xl border border-orange-500/25 bg-zinc-950"
+        className="anim-fade-zoom relative mt-8 aspect-video overflow-hidden rounded-xl border border-orange-500/25 bg-zinc-950"
         style={{ animationDelay: "100ms" }}
       >
-        <Image
-          src={`/projects/${project.slug}/opengraph-image`}
-          alt={`${project.name} 封面`}
-          fill
-          priority
-          sizes="(min-width: 768px) 768px, 100vw"
-          className="object-cover"
-        />
+        {seriesEmbed ? (
+          <iframe
+            src={seriesEmbed}
+            title={`${project.name} 影片`}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            loading="lazy"
+            className="h-full w-full"
+          />
+        ) : (
+          <Image
+            src={coverSrc}
+            alt={`${project.name} 封面`}
+            fill
+            priority
+            sizes="(min-width: 768px) 768px, 100vw"
+            className="object-cover"
+          />
+        )}
       </div>
 
       <header className="mt-10 border-b border-orange-500/20 pb-8">
