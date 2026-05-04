@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 張訓豪 — 個人作品集
 
-## Getting Started
+橘黑配色的個人網站，用 Next.js 16 + Tailwind v4 寫的。
 
-First, run the development server:
+> 線上版：<https://hao-portfolio.vercel.app>（部署完再更新成你自己的網址）
+
+## 本機開發
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+打開 <http://localhost:3000>。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 自訂內容
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| 想改什麼      | 編輯這個檔案                   |
+| ------------- | ------------------------------ |
+| 名字 / 連結   | `lib/site.ts`                  |
+| 技能          | `lib/site.ts` 的 `skills` 欄位 |
+| 作品集        | `lib/projects.ts`              |
+| 首頁文案      | `app/page.tsx`                 |
+| 自我介紹      | `app/about/page.tsx`           |
+| 履歷 PDF      | 把檔案放到 `public/resume.pdf` |
+| 頭像照片      | 把檔案放到 `public/avatar.jpg` |
+| OG 分享圖     | `app/opengraph-image.tsx`      |
 
-## Learn More
+## 部署到 Vercel
 
-To learn more about Next.js, take a look at the following resources:
+最快路徑：
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. 進入 <https://vercel.com/new>，用 GitHub 帳號登入
+2. 選 `Haooo517/Hao-portfolio` 這個 repo
+3. 全部用預設值，按 **Deploy**
+4. 一分鐘後拿到 `xxx.vercel.app` 的網址，自動 HTTPS、自動 CDN
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+之後每次 `git push` 到 `main` 都會自動重新部署。
 
-## Deploy on Vercel
+### 自訂網域（選配）
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+買好網域後在 Vercel Dashboard → Project → **Settings → Domains** 加上去，
+按指示去網域商那邊改 DNS。Vercel 會自動發 SSL 憑證。
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+部署完記得回來改 `lib/site.ts` 的 `url` 欄位，OG 分享圖才會用對的網址。
+
+## 技術棧
+
+- [Next.js 16](https://nextjs.org/) — React 框架，App Router
+- [React 19](https://react.dev/)
+- [Tailwind CSS v4](https://tailwindcss.com/) — 樣式
+- [lucide-react](https://lucide.dev/) — 圖示
+- [next/og](https://nextjs.org/docs/app/api-reference/file-conventions/metadata/opengraph-image) — 動態生成 OG 分享圖

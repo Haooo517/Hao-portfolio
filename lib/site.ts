@@ -16,4 +16,18 @@ export const site = {
     { href: "/files", label: "檔案" },
     { href: "/contact", label: "聯絡" },
   ],
+  skills: [
+    {
+      group: "語言",
+      items: ["TypeScript", "JavaScript", "Python", "HTML", "CSS"],
+    },
+    {
+      group: "前端",
+      items: ["React", "Next.js", "Tailwind CSS"],
+    },
+    {
+      group: "後端 / 工具",
+      items: ["Node.js", "Git", "REST API"],
+    },
+  ],
 } as const;

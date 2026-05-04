@@ -1,18 +1,25 @@
 import { Download } from "lucide-react";
 import { site } from "@/lib/site";
+import { Avatar } from "@/components/avatar";
 
 export const metadata = { title: "About" };
 
 export default function AboutPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
-      <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
-        <span className="text-orange-400">About</span>
-      </h1>
-      <div className="mt-8 space-y-4 text-lg leading-8 text-zinc-300">
-        <p>
-          嗨，我是 <span className="font-semibold text-orange-300">{site.author.name}</span>。
-        </p>
+      <div className="flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-8">
+        <Avatar name={site.author.name} size={96} className="shrink-0" />
+        <div>
+          <h1 className="text-4xl font-semibold tracking-tight text-zinc-50">
+            <span className="text-orange-400">About</span>
+          </h1>
+          <p className="mt-2 text-zinc-400">
+            嗨，我是 <span className="font-semibold text-orange-300">{site.author.name}</span>。
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-10 space-y-4 text-lg leading-8 text-zinc-300">
         <p>{site.description}</p>
         <p>
           這個區塊可以介紹你的背景、興趣、現在在做什麼、想做什麼。 直接編輯{" "}
@@ -21,6 +28,27 @@ export default function AboutPage() {
           </code>
           。
         </p>
+      </div>
+
+      <h2 className="mt-12 text-xl font-semibold text-orange-400">技能</h2>
+      <div className="mt-4 space-y-4">
+        {site.skills.map((category) => (
+          <div key={category.group}>
+            <p className="text-sm font-medium uppercase tracking-wider text-zinc-500">
+              {category.group}
+            </p>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {category.items.map((skill) => (
+                <span
+                  key={skill}
+                  className="rounded-md border border-orange-500/30 bg-orange-500/10 px-2.5 py-1 text-sm text-orange-300"
+                >
+                  {skill}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
       </div>
 
       <h2 className="mt-12 text-xl font-semibold text-orange-400">履歷</h2>
@@ -37,7 +65,11 @@ export default function AboutPage() {
         <code className="rounded bg-orange-500/10 px-1.5 py-0.5 text-orange-300">
           public/resume.pdf
         </code>{" "}
-        就會自動有這個下載連結。
+        就會自動有這個下載連結。要換頭像就把照片放到{" "}
+        <code className="rounded bg-orange-500/10 px-1.5 py-0.5 text-orange-300">
+          public/avatar.jpg
+        </code>{" "}
+        。
       </p>
     </div>
   );

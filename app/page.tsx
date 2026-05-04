@@ -3,13 +3,16 @@ import { ArrowRight } from "lucide-react";
 import { site } from "@/lib/site";
 import { projects } from "@/lib/projects";
 import { ProjectCard } from "@/components/project-card";
+import { Avatar } from "@/components/avatar";
 
 export default function HomePage() {
   const featured = projects.slice(0, 3);
 
   return (
     <div className="mx-auto max-w-5xl px-6 py-24">
-      <section className="max-w-2xl">
+      <section className="flex max-w-2xl flex-col gap-6 sm:flex-row sm:items-center sm:gap-8">
+        <Avatar name={site.author.name} size={112} className="shrink-0" />
+        <div>
         <p className="text-sm font-medium uppercase tracking-wider text-orange-500">
           Hi, I&apos;m <span className="text-orange-300">{site.author.name}</span>
         </p>
@@ -32,6 +35,7 @@ export default function HomePage() {
           >
             關於我
           </Link>
+        </div>
         </div>
       </section>
 
