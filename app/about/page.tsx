@@ -14,7 +14,11 @@ export default function AboutPage() {
             <span className="text-orange-400">ABOUT</span>
           </h1>
           <p className="mt-2 text-zinc-400">
-            嗨，我是 <span className="font-semibold text-orange-300">{site.author.name}</span>。
+            嗨，我是 <span className="font-semibold text-orange-300">{site.author.name}</span>，朋友都叫我{" "}
+            <span className="font-display font-semibold uppercase tracking-wider text-orange-400">
+              {site.author.nickname}
+            </span>
+            。
           </p>
         </div>
       </div>

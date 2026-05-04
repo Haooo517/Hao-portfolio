@@ -26,19 +26,19 @@ export default function HomePage() {
           </p>
 
           <h1
-            className="anim-fade-up mt-4 font-display text-6xl font-black tracking-tight text-zinc-50 sm:text-7xl"
+            className="anim-fade-up mt-4 text-6xl font-black tracking-[0.25em] text-zinc-50 sm:text-7xl"
             style={{ animationDelay: "300ms" }}
           >
-            <span className="bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent anim-text-glow">
+            <span className="bg-gradient-to-br from-orange-300 via-orange-400 to-orange-600 bg-clip-text text-transparent">
               {site.author.name}
             </span>
           </h1>
 
           <p
-            className="anim-fade-up mt-3 font-display text-sm uppercase tracking-[0.3em] text-zinc-500"
+            className="anim-fade-up mt-4 font-display text-sm uppercase tracking-[0.4em] text-orange-400/80"
             style={{ animationDelay: "450ms" }}
           >
-            Howard Chang · Engineer
+            {site.author.nickname} · Software Engineer
           </p>
 
           <p

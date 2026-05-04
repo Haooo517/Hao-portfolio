@@ -7,7 +7,7 @@ export function Header() {
       <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="font-display text-lg font-bold tracking-[0.15em] text-orange-400 transition hover:text-orange-300"
+          className="font-display text-lg font-bold uppercase tracking-[0.25em] text-orange-400 transition hover:text-orange-300"
         >
           {site.name}
         </Link>

@@ -1,12 +1,14 @@
 export const site = {
-  name: "張訓豪",
-  title: "張訓豪 — 個人作品集",
+  name: "Hao",
+  title: "Hao — 個人作品集",
   description: "一個工程師的作品集與個人空間",
   url: "https://hao-portfolio-xi.vercel.app",
   author: {
     name: "張訓豪",
+    nickname: "Hao",
     email: "howard940517@gmail.com",
     github: "https://github.com/Haooo517",
+    instagram: "https://www.instagram.com/haooo.517_/",
     linkedin: "",
   },
   nav: [
