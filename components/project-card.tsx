@@ -3,20 +3,21 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
+const cardClass =
+  "group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md transition hover:border-orange-500/60 hover:shadow-[0_0_30px_-12px_rgba(249,115,22,0.45)]";
+
 export function ProjectCard({ project }: { project: Project }) {
   const itemCount = project.items?.length ?? 0;
-  const detailHint =
-    itemCount > 0
+  const detailHint = project.externalUrl
+    ? "進入 Demo"
+    : itemCount > 0
       ? `查看全部 ${itemCount} 個作品`
       : project.github || project.demo
         ? "查看詳細與連結"
         : "查看詳細";
 
-  return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md transition hover:border-orange-500/60 hover:shadow-[0_0_30px_-12px_rgba(249,115,22,0.45)]"
-    >
+  const content = (
+    <>
       <div className="relative aspect-[1200/630] overflow-hidden border-b border-orange-500/15 bg-zinc-950">
         <Image
           src={project.cover ?? `/projects/${project.slug}/opengraph-image`}
@@ -53,6 +54,25 @@ export function ProjectCard({ project }: { project: Project }) {
           <ArrowUpRight className="h-4 w-4 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-orange-400" />
         </div>
       </div>
+    </>
+  );
+
+  if (project.externalUrl) {
+    return (
+      <a
+        href={project.externalUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cardClass}
+      >
+        {content}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={`/projects/${project.slug}`} className={cardClass}>
+      {content}
     </Link>
   );
 }

@@ -25,10 +25,20 @@ export type Project = {
   videos?: ProjectVideo[]; // dedicated section showing one or more playlists / videos
   cover?: string; // optional path under /public; falls back to dynamic OG
   coverAspect?: string; // CSS aspect-ratio (e.g. "1250/375"); defaults to "1200/630"
+  externalUrl?: string; // if set, the card links here in a new tab instead of /projects/[slug]
 };
 
 // 把下面的範例換成你真的做過的專案。陣列順序就是顯示順序，最新的放最前面。
 export const projects: Project[] = [
+  {
+    slug: "snake-game-3d",
+    name: "3D 貪食蛇",
+    summary: "用 WebGL 從零寫的 3D 貪食蛇，可以在瀏覽器裡直接玩。",
+    tech: ["JavaScript", "WebGL"],
+    github: "https://github.com/Haooo517/snake-game-3d",
+    externalUrl: "https://haooo517.github.io/snake-game-3d/",
+    year: 2026,
+  },
   {
     slug: "hao-portfolio",
     name: "個人作品集網站",
@@ -125,7 +135,7 @@ export const projects: Project[] = [
       },
       {
         title: "【坑爹直直走 Ver.4】 播放清單",
-        url: "https://youtube.com/playlist?list=PL1ooxyQKbtR_62C1DpFRfdd9iNtLa0rOc&si=KhIsYu2J51kOvAag",
+        url: "https://youtube.com/playlist?list=PL1ooxyQKbtR8oc6C9CA78_UX46EjU4itL&si=Ilio37mSXozr6JVg",
         description:
           "第四張地圖是為了慶祝某知名實況主突破一百萬訂閱，因而量身打造的雙人坑爹地圖，可以來看看該實況主和他朋友的反應唷！",
       },
