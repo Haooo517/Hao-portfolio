@@ -61,6 +61,18 @@ export const projects: Project[] = [
     year: 2025,
   },
   {
+    slug: "pong-game",
+    name: "Pong Game",
+    summary:
+      "剛開始學網頁設計時做的經典乒乓小遊戲，純 HTML / CSS / JS，支援單人對 AI 與雙人本地對戰。",
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Haooo517/pong-game",
+    demo: "https://haooo517.github.io/pong-game/",
+    cover: "/home-page/preview/pong.png",
+    coverAspect: "926/796",
+    year: 2022,
+  },
+  {
     slug: "catan-online",
     name: "Catan Terminal",
     summary:
