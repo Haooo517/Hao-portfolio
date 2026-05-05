@@ -31,6 +31,24 @@ export type Project = {
 // 把下面的範例換成你真的做過的專案。陣列順序就是顯示順序，最新的放最前面。
 export const projects: Project[] = [
   {
+    slug: "catan-online",
+    name: "Catan Terminal",
+    summary:
+      "C 寫的單機卡坦島，編譯成 WebAssembly 跑在瀏覽器裡，xterm.js 渲染終端機。",
+    tech: ["C", "Emscripten", "WebAssembly", "xterm.js"],
+    github: "https://github.com/Haooo517/catan-online",
+    demo: "/projects/catan-online",
+    year: 2026,
+  },
+  {
+    slug: "hao-portfolio",
+    name: "個人作品集網站",
+    summary: "你正在看的這個網站。Next.js 16 + Tailwind v4，橘黑配色。",
+    tech: ["TypeScript", "Next.js", "Tailwind CSS"],
+    github: "https://github.com/Haooo517/Hao-portfolio",
+    year: 2026,
+  },
+  {
     slug: "snake-game-3d",
     name: "3D 貪食蛇",
     summary: "用 WebGL 從零寫的 3D 貪食蛇，可以在瀏覽器裡直接玩。",
@@ -40,14 +58,6 @@ export const projects: Project[] = [
     cover: "/home-page/preview/snake.png",
     coverAspect: "1082/777",
     year: 2025,
-  },
-  {
-    slug: "hao-portfolio",
-    name: "個人作品集網站",
-    summary: "你正在看的這個網站。Next.js 16 + Tailwind v4，橘黑配色。",
-    tech: ["TypeScript", "Next.js", "Tailwind CSS"],
-    github: "https://github.com/Haooo517/Hao-portfolio",
-    year: 2026,
   },
   {
     slug: "minecraft-maps",
