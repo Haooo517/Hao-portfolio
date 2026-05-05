@@ -4,11 +4,12 @@ import { useEffect, useRef, useState } from "react";
 import "@xterm/xterm/css/xterm.css";
 
 type CatanModuleConfig = {
-  print: (s: string) => void;
-  printErr: (s: string) => void;
   locateFile: (name: string) => string;
+  jsWrite: (s: string) => void;
   jsReadLine: () => Promise<string>;
   jsGetChar: () => Promise<number>;
+  print?: (s: string) => void;
+  printErr?: (s: string) => void;
 };
 
 declare global {
@@ -155,13 +156,14 @@ export function CatanTerminal() {
         }
         if (disposed) return;
 
-        const write = (s: string) => term.write(s);
-        // main() runs automatically once createCatanModule resolves and yields
-        // back via Asyncify on the first jsReadLine call.
+        // jsWrite gets raw stdout/stderr bytes directly from our overridden
+        // fd_write (in catan_emlib.js) — no per-line buffering, so prompts
+        // without trailing \n appear immediately and \n bytes are forwarded
+        // for xterm's convertEol to render as line breaks.
+        const jsWrite = (s: string) => term.write(s);
         await window.createCatanModule!({
-          print: write,
-          printErr: write,
           locateFile: (name) => `/catan/${name}`,
+          jsWrite,
           jsReadLine,
           jsGetChar,
         });
