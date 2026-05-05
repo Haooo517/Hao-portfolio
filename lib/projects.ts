@@ -39,6 +39,16 @@ export const projects: Project[] = [
     year: 2026,
   },
   {
+    slug: "one-night-werewolf",
+    name: "一夜終極狼人 Online",
+    summary: "React + Firebase Firestore 寫的線上多人一夜狼人，朋友間直接開房連線玩。",
+    tech: ["JavaScript", "React", "Firebase", "Firestore"],
+    github: "https://github.com/Haooo517/one-night-werewolf-online",
+    cover: "/home-page/preview/werewolf.png",
+    coverAspect: "500/377",
+    year: 2026,
+  },
+  {
     slug: "snake-game-3d",
     name: "3D 貪食蛇",
     summary: "用 WebGL 從零寫的 3D 貪食蛇，可以在瀏覽器裡直接玩。",

@@ -16,6 +16,13 @@ export const timeline: TimelineEntry[] = [
     type: "project",
   },
   {
+    period: "2026",
+    title: "一夜終極狼人 Online",
+    org: "side project",
+    description: "React + Firebase Firestore 的線上多人一夜狼人。",
+    type: "project",
+  },
+  {
     period: "2025",
     title: "3D 貪食蛇",
     org: "side project",
