@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { GithubIcon } from "@/components/brand-icons";
 import { CatanTerminalLoader } from "@/components/catan-terminal-loader";
+import { projects } from "@/lib/projects";
 
 export const metadata = {
   title: "Catan Terminal",
@@ -10,6 +11,7 @@ export const metadata = {
 };
 
 export default function CatanProjectPage() {
+  const description = projects.find((p) => p.slug === "catan-online")?.description;
   return (
     <div className="mx-auto max-w-7xl px-6 py-16">
       <Link
@@ -42,6 +44,14 @@ export default function CatanProjectPage() {
           C · Emscripten · WebAssembly · xterm.js
         </span>
       </div>
+
+      {description && description.length > 0 && (
+        <section className="mt-8 max-w-3xl space-y-4 text-base leading-8 text-zinc-300 sm:text-lg">
+          {description.map((paragraph, idx) => (
+            <p key={idx}>{paragraph}</p>
+          ))}
+        </section>
+      )}
 
       <div className="mt-8 lg:hidden rounded-lg border border-amber-500/30 bg-amber-950/20 p-3 text-sm text-amber-400/90">
         提醒：地圖約 100 字寬，建議在桌機 / 平板瀏覽。手機可以橫螢幕，但會比較擠。

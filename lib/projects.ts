@@ -17,6 +17,7 @@ export type Project = {
   slug: string;
   name: string;
   summary: string;
+  description?: string[]; // long-form paragraphs shown below the header on the detail page
   tech: string[];
   github?: string;
   demo?: string;
@@ -34,6 +35,11 @@ export const projects: Project[] = [
     slug: "hao-portfolio",
     name: "個人作品集網站",
     summary: "你正在看的這個網站。Next.js 16 + Tailwind v4，橘黑配色。",
+    description: [
+      "想找一個地方把以前到現在做的東西整理在一起，順便試試看最新版的 Next.js 16 跟 Tailwind v4。整體採 App Router + 純檔案管理 — 作品列表、時間軸、聯絡方式全都是 TypeScript 檔案，改一行 push 上去就重新部署，不用後台、不用資料庫。",
+      "刻意走橘黑配色，比起一般作品集的冷感極簡，我比較喜歡帶一點傲氣跟個性的風格。穿插了 reveal、tilt、parallax 之類的微互動，讓滑頁時不會太平。",
+      "整個 repo 設計成「我會持續更新」的形式 — 之後新作品只要在 projects.ts 加一筆就會自動出現在列表跟個別頁，opengraph image 也會動態生成。",
+    ],
     tech: ["TypeScript", "Next.js", "Tailwind CSS"],
     github: "https://github.com/Haooo517/Hao-portfolio",
     year: 2026,
@@ -42,6 +48,11 @@ export const projects: Project[] = [
     slug: "one-night-werewolf",
     name: "一夜終極狼人 Online",
     summary: "React + Firebase Firestore 寫的線上多人一夜狼人，朋友間直接開房連線玩。",
+    description: [
+      "起點很單純 — 朋友散在不同城市，但偶爾還是想湊一起玩一夜終極狼人，所以就動手做了一個。重點放在「開房 → 進場 → 開玩」這條路徑要爽，沒有帳號、沒有大廳、沒有匹配，就是丟連結給朋友、進房間就可以開始。",
+      "技術上用 Firebase Firestore 作為唯一的同步後端 — 房間狀態、玩家動作、夜晚資訊揭露全部靠 Firestore 即時推送。沒寫任何自己的 server，所有遊戲邏輯都在前端跑，靠 Firestore 的 rules 控制資料權限。",
+      "完整實作了所有經典角色與擴充：狼人、預言家、強盜、搗蛋鬼、酒鬼、失眠者、村民、爪牙、化身幽靈、MVP、獵人 等等。投票結算、平手規則、特殊勝利條件都有處理。",
+    ],
     tech: ["JavaScript", "React", "Firebase", "Firestore"],
     github: "https://github.com/Haooo517/one-night-werewolf-online",
     demo: "https://one-night-werewolves.web.app/",
@@ -53,6 +64,11 @@ export const projects: Project[] = [
     slug: "snake-game-3d",
     name: "3D 貪食蛇",
     summary: "用 WebGL 從零寫的 3D 貪食蛇，可以在瀏覽器裡直接玩。",
+    description: [
+      "想練 3D 渲染，但又不想直接跳 three.js — 所以選擇用最原始的 WebGL，自己手刻 shader、矩陣變換、光照模型，把整條從頂點到像素的流程走一次。",
+      "蛇身是一連串方塊，每一節都自己維護位置與朝向，靠 model matrix 串成連續的軌跡。撞到自己 / 撞牆的判斷也都重做一遍，當作練習資料結構與空間幾何。",
+      "鏡頭可以自由旋轉，難度愈高蛇愈長、地圖愈緊湊。雖然規模不大，但「親手把每一步都寫過一次」這件事，比後來用任何引擎都還記得清楚。",
+    ],
     tech: ["JavaScript", "WebGL"],
     github: "https://github.com/Haooo517/snake-game-3d",
     demo: "https://haooo517.github.io/snake-game-3d/",
@@ -65,6 +81,11 @@ export const projects: Project[] = [
     name: "Pong Game",
     summary:
       "剛開始學網頁設計時做的經典乒乓小遊戲，純 HTML / CSS / JS，支援單人對 AI 與雙人本地對戰。",
+    description: [
+      "剛開始學網頁設計時的第一個小作品。沒有框架、沒有 build 工具、沒有 npm，就純粹三個檔案 — index.html、style.css、game.js — 然後一個簡單能玩的乒乓遊戲。",
+      "Demo 裡保留了兩個版本。「Classic」是當年原汁原味的版本：變數命名隨便、AI 只是上下反彈完全沒在追球、檔案沒分模組 — 但它能玩，就是它能存在的全部意義。我刻意不去動它，留著當未來回頭看的里程碑。",
+      "後來在同個 repo 加了一個「Pro」版：三段 AI 難度（Hard 模式會預判球反彈到自己這邊的位置）、四種隨機掉落道具（加速、變大、縮小、曲球）、粒子拖尾、得分震動、霓虹色調的視覺。算是把當年的自己升級了一輪。",
+    ],
     tech: ["HTML", "CSS", "JavaScript"],
     github: "https://github.com/Haooo517/pong-game",
     demo: "https://haooo517.github.io/pong-game/",
@@ -77,6 +98,11 @@ export const projects: Project[] = [
     name: "Catan Terminal",
     summary:
       "C 寫的單機卡坦島，編譯成 WebAssembly 跑在瀏覽器裡，xterm.js 渲染終端機。",
+    description: [
+      "原本只是一個比較大的 C 練習：把卡坦島完整實作成可以在終端機裡玩的版本。發展卡、最長路（DFS）、最大騎士團、港口交易、玩家對玩家交易，所有規則一條都沒省略。",
+      "完成後覺得只能在自己的電腦跑很可惜，試著用 Emscripten 編成 WebAssembly，搭 xterm.js 把 ANSI escape codes 直接渲染成彩色終端機介面，就變成一個可以在瀏覽器裡直接玩的版本。",
+      "整個過程最棘手的點是 C 的同步輸入（getch、fgets）跟瀏覽器的非同步事件迴圈天生衝突。後來用 Emscripten 的 Asyncify 把同步呼叫接成 Promise，C 程式架構幾乎不用改就跑起來了 — 算是我第一次真正體會到「跨平台編譯」的威力。",
+    ],
     tech: ["C", "Emscripten", "WebAssembly", "xterm.js"],
     github: "https://github.com/Haooo517/catan-online",
     demo: "/projects/catan-online",
@@ -89,6 +115,11 @@ export const projects: Project[] = [
     name: "Minecraft 地圖系列",
     summary:
       "2019–2022 年在巴哈姆特發表的整人、解謎、密室、跑酷地圖，共 9 張作品。",
+    description: [
+      "在還沒接觸真正的程式之前，我做東西的方式是用 Minecraft 的 command block — 把方塊一個一個排起來、條件一格一格寫上去，硬是用「遊戲內建的邏輯系統」拼出整套機關、劇情、計分。某種程度上這是我寫程式的起點。",
+      "從 2019 年的「坑爹直直走 Ver.1」開始，一路做了五代坑爹系列、整人手法記事簿、密室逃脫、單線解謎，總共 9 張地圖。每一張的核心問題都不一樣 — 怎麼讓玩家上鉤、怎麼控制節奏、怎麼讓挫敗感剛好變成笑點、怎麼讓劇情跟機關共存。",
+      "其中「整人手法記事簿」曾被收錄進阿神的書裡，「坑爹直直走」系列也累積了不少實況主的痛苦影片。現在回頭看，那段時間沒寫過半行真程式，但對「把東西做給人玩」這件事的感覺，從那時候就成形了。",
+    ],
     tech: ["Minecraft", "Map Design", "巴哈姆特"],
     year: 2022,
     cover: "/home-page/preview/minecraft.gif",

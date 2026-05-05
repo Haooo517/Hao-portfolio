@@ -147,6 +147,20 @@ export default async function ProjectDetailPage({ params }: { params: Params }) 
         )}
       </header>
 
+      {project.description && project.description.length > 0 && (
+        <section className="mt-10 space-y-5 text-base leading-8 text-zinc-300 sm:text-lg">
+          {project.description.map((paragraph, idx) => (
+            <p
+              key={idx}
+              className="anim-fade-up"
+              style={{ animationDelay: `${500 + idx * 80}ms` }}
+            >
+              {paragraph}
+            </p>
+          ))}
+        </section>
+      )}
+
       {project.items && project.items.length > 0 && (
         <section className="mt-12">
           <h2 className="font-display text-xl font-bold tracking-wider text-orange-400">
