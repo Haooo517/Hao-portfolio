@@ -44,6 +44,7 @@ export const projects: Project[] = [
     summary: "React + Firebase Firestore 寫的線上多人一夜狼人，朋友間直接開房連線玩。",
     tech: ["JavaScript", "React", "Firebase", "Firestore"],
     github: "https://github.com/Haooo517/one-night-werewolf-online",
+    demo: "https://one-night-werewolves.web.app/",
     cover: "/home-page/preview/werewolf.png",
     coverAspect: "500/377",
     year: 2026,
