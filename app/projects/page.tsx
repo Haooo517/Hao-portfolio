@@ -19,8 +19,8 @@ export default function ProjectsPage() {
       </p>
       <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((p, idx) => (
-          <Reveal key={p.slug} delay={idx * 90}>
-            <Tilt>
+          <Reveal key={p.slug} delay={idx * 90} className="h-full">
+            <Tilt className="h-full">
               <ProjectCard project={p} />
             </Tilt>
           </Reveal>

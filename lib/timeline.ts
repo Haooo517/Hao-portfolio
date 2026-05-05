@@ -16,6 +16,13 @@ export const timeline: TimelineEntry[] = [
     type: "project",
   },
   {
+    period: "2025",
+    title: "3D 貪食蛇",
+    org: "side project",
+    description: "用 WebGL 從零寫的 3D 貪食蛇，在瀏覽器裡直接玩。",
+    type: "project",
+  },
+  {
     period: "2023",
     title: "Catan Terminal",
     org: "side project",

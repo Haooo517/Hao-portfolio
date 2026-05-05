@@ -4,7 +4,7 @@ import Link from "next/link";
 import type { Project } from "@/lib/projects";
 
 const cardClass =
-  "group flex flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md transition hover:border-orange-500/60 hover:shadow-[0_0_30px_-12px_rgba(249,115,22,0.45)]";
+  "group flex h-full flex-col overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/60 backdrop-blur-md transition hover:border-orange-500/60 hover:shadow-[0_0_30px_-12px_rgba(249,115,22,0.45)]";
 
 export function ProjectCard({ project }: { project: Project }) {
   const itemCount = project.items?.length ?? 0;

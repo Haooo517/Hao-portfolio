@@ -90,8 +90,8 @@ export default function HomePage() {
           </Reveal>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {featured.map((p, idx) => (
-              <Reveal key={p.slug} delay={idx * 100}>
-                <Tilt>
+              <Reveal key={p.slug} delay={idx * 100} className="h-full">
+                <Tilt className="h-full">
                   <ProjectCard project={p} />
                 </Tilt>
               </Reveal>
