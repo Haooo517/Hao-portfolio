@@ -16,6 +16,14 @@ export const timeline: TimelineEntry[] = [
     type: "project",
   },
   {
+    period: "2023",
+    title: "Catan Terminal",
+    org: "side project",
+    description:
+      "用 C 寫的單機版卡坦島，後來再用 Emscripten 編譯成 WebAssembly + xterm.js 在瀏覽器裡可玩。",
+    type: "project",
+  },
+  {
     period: "2019 – 2022",
     title: "Minecraft 地圖系列",
     org: "巴哈姆特",

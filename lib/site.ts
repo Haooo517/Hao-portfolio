@@ -22,11 +22,15 @@ export const site = {
   skills: [
     {
       group: "語言",
-      items: ["C", "Python", "JavaScript", "SQL"],
+      items: ["C", "Python", "JavaScript", "TypeScript", "SQL"],
     },
     {
       group: "框架 / 函式庫",
-      items: ["Vue", "React"],
+      items: ["Vue", "React", "Next.js", "Tailwind CSS"],
+    },
+    {
+      group: "工具 / 平台",
+      items: ["WebAssembly", "Emscripten", "xterm.js", "WebGL", "Git"],
     },
   ],
 } as const;
