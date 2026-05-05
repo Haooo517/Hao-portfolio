@@ -41,7 +41,7 @@ export function CatanTerminal() {
 
         const term = new Terminal({
           cols: 120,
-          rows: 44,
+          rows: 60,
           convertEol: true,
           fontFamily:
             "var(--font-geist-mono), 'JetBrains Mono', Menlo, monospace",
@@ -50,26 +50,26 @@ export function CatanTerminal() {
           cursorBlink: true,
           theme: {
             background: "#0a0a0a",
-            foreground: "#fafafa",
+            foreground: "#d4d4d4",
             cursor: "#fb923c",
             cursorAccent: "#0a0a0a",
-            selectionBackground: "#f97316",
+            selectionBackground: "#7c2d12",
             black: "#0a0a0a",
-            red: "#f87171",
-            green: "#4ade80",
-            yellow: "#facc15",
-            blue: "#60a5fa",
-            magenta: "#e879f9",
-            cyan: "#22d3ee",
-            white: "#e5e5e5",
+            red: "#a33d44",
+            green: "#5a8a4f",
+            yellow: "#a78343",
+            blue: "#4a6f9c",
+            magenta: "#8a4a92",
+            cyan: "#4a8593",
+            white: "#bcbcbc",
             brightBlack: "#52525b",
-            brightRed: "#fb7185",
-            brightGreen: "#86efac",
-            brightYellow: "#fde047",
-            brightBlue: "#93c5fd",
-            brightMagenta: "#f0abfc",
-            brightCyan: "#67e8f9",
-            brightWhite: "#fafafa",
+            brightRed: "#c95159",
+            brightGreen: "#7aac6c",
+            brightYellow: "#c9a05d",
+            brightBlue: "#6a8db8",
+            brightMagenta: "#a467ad",
+            brightCyan: "#65a3b1",
+            brightWhite: "#d4d4d4",
           },
         });
         terminal = term;
@@ -203,7 +203,7 @@ export function CatanTerminal() {
       )}
       <div
         ref={containerRef}
-        className="h-[640px] w-full overflow-hidden rounded-lg"
+        className="h-[820px] w-full overflow-hidden rounded-lg"
       />
     </div>
   );
