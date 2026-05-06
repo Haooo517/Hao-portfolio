@@ -1,65 +1,48 @@
-import { Download, FileText } from "lucide-react";
-
-type DownloadFile = {
-  name: string;
-  description: string;
-  href: string;
-  size?: string;
-};
-
-const files: DownloadFile[] = [
-  // 編輯這個陣列來新增 / 移除檔案。把檔案放到 public/ 資料夾下，這裡的 href 寫 "/檔名"。
-  // 範例：
-  // { name: "Resume.pdf", description: "我的履歷", href: "/resume.pdf", size: "150 KB" },
-];
+import { Send } from "lucide-react";
+import Link from "next/link";
+import { FileBrowserStandalone } from "@/components/file-browser";
 
 export const metadata = { title: "Files" };
 
 export default function FilesPage() {
   return (
     <div className="mx-auto max-w-3xl px-6 py-24">
-      <h1 className="font-display text-4xl font-bold tracking-wider text-zinc-50">
+      <h1 className="anim-fade-up font-display text-4xl font-bold tracking-wider text-zinc-50">
         <span className="text-orange-400">FILES</span>
       </h1>
-      <p className="mt-3 text-lg text-zinc-400">公開下載區。</p>
+      <p
+        className="anim-fade-up mt-3 text-lg text-zinc-400"
+        style={{ animationDelay: "120ms" }}
+      >
+        公開下載區。我放上來給大家拿的東西都在這裡，順手點一下就能下載。
+      </p>
 
-      {files.length === 0 ? (
-        <div className="mt-10 rounded-lg border border-dashed border-orange-500/30 p-12 text-center text-zinc-500">
-          <FileText className="mx-auto h-8 w-8 text-orange-400/60" />
-          <p className="mt-3">
-            還沒有檔案。把檔案放到{" "}
-            <code className="rounded bg-orange-500/10 px-1.5 py-0.5 text-sm text-orange-300">
-              public/
-            </code>
-            ，並編輯{" "}
-            <code className="rounded bg-orange-500/10 px-1.5 py-0.5 text-sm text-orange-300">
-              app/files/page.tsx
-            </code>{" "}
-            的 files 陣列。
+      <div
+        className="anim-fade-up mt-10"
+        style={{ animationDelay: "200ms" }}
+      >
+        <FileBrowserStandalone area="public" />
+      </div>
+
+      <div
+        className="anim-fade-up mt-10 flex flex-col items-center gap-3 rounded-xl border border-orange-500/25 bg-zinc-950/40 px-6 py-8 text-center backdrop-blur-md sm:flex-row sm:justify-between sm:text-left"
+        style={{ animationDelay: "300ms" }}
+      >
+        <div>
+          <p className="font-display text-sm uppercase tracking-[0.25em] text-orange-400/80">
+            想傳檔案給我？
+          </p>
+          <p className="mt-1 text-sm text-zinc-400">
+            有暗號就能丟檔案進我的收件夾。
           </p>
         </div>
-      ) : (
-        <ul className="mt-10 divide-y divide-zinc-800 rounded-lg border border-zinc-800">
-          {files.map((file) => (
-            <li key={file.href} className="flex items-center justify-between gap-4 p-4">
-              <div>
-                <p className="font-medium text-zinc-100">{file.name}</p>
-                <p className="text-sm text-zinc-500">
-                  {file.description}
-                  {file.size && ` · ${file.size}`}
-                </p>
-              </div>
-              <a
-                href={file.href}
-                download
-                className="inline-flex items-center gap-1.5 rounded-md border border-orange-500/40 bg-orange-500/10 px-3 py-1.5 text-sm font-medium text-orange-300 transition hover:border-orange-400 hover:bg-orange-500/20 hover:text-orange-200"
-              >
-                <Download className="h-4 w-4" /> 下載
-              </a>
-            </li>
-          ))}
-        </ul>
-      )}
+        <Link
+          href="/files/send"
+          className="inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-black transition hover:scale-[1.03] hover:bg-orange-400 hover:shadow-[0_0_25px_-5px_rgba(249,115,22,0.7)]"
+        >
+          <Send className="h-4 w-4" /> 傳給我
+        </Link>
+      </div>
     </div>
   );
 }
